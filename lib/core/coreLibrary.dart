@@ -9,8 +9,6 @@ import 'package:intl/intl.dart';
 import 'package:path_provider/path_provider.dart';
 import 'dart:io';
 
-
-
 class CoreLibrary {
   static String userId = ""; //
   static bool isTestServer = true;
@@ -38,14 +36,14 @@ class CoreLibrary {
   ---------------------------*/
   Future AuthWrite(String value) async {
     final dir = await getApplicationDocumentsDirectory();
-    return File(dir.path + '/ShoppingHelperAuth.txt').writeAsString(value.toString());
+    return File(dir.path + '/ShoppingHelperAuth.txt')
+        .writeAsString(value.toString());
   }
 }
 
 String url = "http://10.0.2.2:3000/";
 String urlTestServer = "http://10.0.2.2:3000/";
 String urlServer = "http://shoppinghelper.cafe24app.com/";
-
 
 showPopup(BuildContext context, Widget widget, String title,
     {BuildContext popupContext}) {
@@ -60,13 +58,18 @@ showPopup(BuildContext context, Widget widget, String title,
         content: Scaffold(
           backgroundColor: HexColor("#FFF6F4"),
           appBar: AppBar(
-            title: Text(title, style: GoogleFonts.jua(
-              textStyle: TextStyle(color: HexColor("#442C2E"))
-            ),),
+            title: Text(
+              title,
+              style: GoogleFonts.jua(
+                  textStyle: TextStyle(color: HexColor("#442C2E"))),
+            ),
             backgroundColor: HexColor("FEDBD0"),
             leading: new Builder(builder: (context) {
               return IconButton(
-                icon: Icon(Icons.arrow_back, color: HexColor("#442C2E"),),
+                icon: Icon(
+                  Icons.arrow_back,
+                  color: HexColor("#442C2E"),
+                ),
                 onPressed: () {
                   try {
                     Navigator.pop(context, "test"); //close the popup
@@ -76,7 +79,7 @@ showPopup(BuildContext context, Widget widget, String title,
             }),
             brightness: Brightness.light,
           ),
-          resizeToAvoidBottomPadding: false,
+          resizeToAvoidBottomInset: false,
           body: widget,
         ),
       ),
@@ -93,19 +96,13 @@ showPopup(BuildContext context, Widget widget, String title,
   ---------------------------*/
 Future<dynamic> CallService(
     BuildContext buildContext, String connectKey, Map body) async {
+  //buildContext.dependOnInheritedWidgetOfExactType()
 
-
-      
-        //buildContext.dependOnInheritedWidgetOfExactType()
-      
-      
-
-      if ( CoreLibrary.isTestServer == true){
-          url = urlTestServer;
-      }
-      else{
-        url = urlServer;
-      }
+  if (CoreLibrary.isTestServer == true) {
+    url = urlTestServer;
+  } else {
+    url = urlServer;
+  }
 
   return await http.post(Uri.encodeFull(url + connectKey),
       body: body,
@@ -130,14 +127,11 @@ Future<dynamic> CallService(
   ---------------------------*/
 dynamic CallServiceSync(
     BuildContext buildContext, String connectKey, Map body) async {
-
-      if ( CoreLibrary.isTestServer == true){
-          url = urlTestServer;
-      }
-      else{
-        url = urlServer;
-      }
-
+  if (CoreLibrary.isTestServer == true) {
+    url = urlTestServer;
+  } else {
+    url = urlServer;
+  }
 
   return await http.post(Uri.encodeFull(url + connectKey),
       body: body,
@@ -194,8 +188,7 @@ void ShowSnackBar(BuildContext buildContext, String message) {
   // title : 스낵바를 표시한다.( ShowSnackBar 와 동일기능)
   // desc : 
   ---------------------------*/
-void AMessageBoxShow(BuildContext buildContext, String message)
-{
+void AMessageBoxShow(BuildContext buildContext, String message) {
   ShowSnackBar(buildContext, message);
 }
 
@@ -293,7 +286,6 @@ Future<ConfirmAction> ShowMessageBoxWithConfirm(
   );
 }
 
-
 class HexColor extends Color {
   static int _getColorFromHex(String hexColor) {
     hexColor = hexColor.toUpperCase().replaceAll("#", "");
@@ -305,4 +297,3 @@ class HexColor extends Color {
 
   HexColor(final String hexColor) : super(_getColorFromHex(hexColor));
 }
-

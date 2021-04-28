@@ -7,7 +7,6 @@ import 'package:stock/model/StockDTO.dart';
 import 'package:stock/model/PracticeModel.dart'
     show PracticeModel, practiceModel;
 import 'package:stock/model/StockValueDTO.dart';
-import 'package:flutter_candlesticks/flutter_candlesticks.dart';
 import 'package:stock/stock/PracticeBuy.dart';
 import 'package:stock/stock/PracticeBuy2.dart';
 // import 'package:syncfusion_flutter_charts/charts.dart';
