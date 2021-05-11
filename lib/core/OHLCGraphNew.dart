@@ -187,7 +187,8 @@ class _OHLCVPainter extends CustomPainter {
     final double height = size.height * (1 - volumeProp);
 
     if (enableGridLines) {
-      width = size.width - gridLineTextPainters[0].text.text.length * 6;
+      width = size.width - gridLineTextPainters[0].width * 6;
+      //width = size.width - gridLineTextPainters[0].text.text.length * 6;
       Paint gridPaint = new Paint()
         ..color = gridLineColor
         ..strokeWidth = gridLineWidth;
@@ -255,7 +256,6 @@ class _OHLCVPainter extends CustomPainter {
           ..color = increaseColor
           ..strokeWidth = lineWidth;
 
-
         Rect ocRect =
             new Rect.fromLTRB(rectLeft, rectTop, rectRight, rectBottom);
         canvas.drawRect(ocRect, rectPaint);
@@ -263,7 +263,7 @@ class _OHLCVPainter extends CustomPainter {
         // Draw volume bars
         Rect volumeRect = new Rect.fromLTRB(
             rectLeft, volumeBarTop, rectRight, volumeBarBottom);
-        canvas.drawRect(volumeRect, rectPaint);   
+        canvas.drawRect(volumeRect, rectPaint);
         // canvas.drawLine(new Offset(rectLeft, rectBottom - lineWidth / 2),
         //     new Offset(rectRight, rectBottom - lineWidth / 2), rectPaint);
         // canvas.drawLine(new Offset(rectLeft, rectTop + lineWidth / 2),

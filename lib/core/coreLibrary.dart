@@ -38,6 +38,7 @@ class CoreLibrary {
     final dir = await getApplicationDocumentsDirectory();
     return File(dir.path + '/ShoppingHelperAuth.txt')
         .writeAsString(value.toString());
+
   }
 
   //3자리마디 콤마표시
@@ -86,7 +87,7 @@ showPopup(BuildContext context, Widget widget, String title,
             }),
             brightness: Brightness.light,
           ),
-          resizeToAvoidBottomPadding: false,
+          resizeToAvoidBottomInset: false,
           body: widget,
         ),
       ),
