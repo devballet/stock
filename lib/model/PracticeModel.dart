@@ -27,6 +27,10 @@ class PracticeModel extends BaseModel {
   RangeValues currentRangeValues = RangeValues(40, 80);
 
   int count = 0;
+  
+  //Ai투자 관련 속성
+  bool aiVisible = false;
+  int aiIndex = 0;
 
   void setColor(String inColor) {
     print("## NotesModel.setColor(): inColor = $inColor");

@@ -38,6 +38,14 @@ class CoreLibrary {
     final dir = await getApplicationDocumentsDirectory();
     return File(dir.path + '/ShoppingHelperAuth.txt')
         .writeAsString(value.toString());
+
+  }
+
+  //3자리마디 콤마표시
+  String numberWithComma(int param) {
+    return new NumberFormat('###,###,###,###')
+        .format(param)
+        .replaceAll(' ', '');
   }
 }
 

@@ -55,7 +55,7 @@ class StockDetail extends StatelessWidget {
                         color: Colors.black38,
                         child: Column(
                           children: [
-                            SimpleTitleLevel1(
+                            JnSimpleTitle(
                               title: "차트",
                             ),
                             Expanded(
@@ -71,7 +71,7 @@ class StockDetail extends StatelessWidget {
                         color: Colors.black38,
                         child: Column(
                           children: [
-                            SimpleTitleLevel1(
+                            JnSimpleTitle(
                               title: "게시판",
                             ),
                             Expanded(
