@@ -111,13 +111,17 @@ class CommonDisplayText extends StatelessWidget {
 }
 
 
-class SimpleTitleLevel1 extends StatelessWidget {
-  const SimpleTitleLevel1({
+class JnSimpleTitle extends StatelessWidget {
+  const JnSimpleTitle({
     Key key,
+    this.selectedColor = Colors.transparent,
+    this.fontSize = 18,
     @required this.title
   }) : super(key: key);
 
   final String title;
+  final Color selectedColor;
+  final double fontSize;
 
   @override
   Widget build(BuildContext context) {
@@ -127,9 +131,43 @@ class SimpleTitleLevel1 extends StatelessWidget {
         SizedBox(
           width: 5,
         ),
-        Icon(
-          Icons.check_circle,
-          color: HexColor("#442C2E"),
+        // Icon(
+        //   Icons.check_circle,
+        //   color: HexColor("#442C2E"),
+        // ),
+        SizedBox(
+          width: 10,
+        ),
+        Text(
+          title,
+          style: TextStyle(
+            color: selectedColor == Colors.transparent ?  HexColor("#442C2E") : selectedColor,
+            fontWeight: FontWeight.bold,
+            fontSize: fontSize
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class JnSimpleText extends StatelessWidget {
+  const JnSimpleText({
+    Key key,
+    this.selectedColor = Colors.transparent,
+    @required this.title
+  }) : super(key: key);
+
+  final String title;
+  final Color selectedColor;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+
+      children: <Widget>[
+        SizedBox(
+          width: 5,
         ),
         SizedBox(
           width: 10,
@@ -137,7 +175,8 @@ class SimpleTitleLevel1 extends StatelessWidget {
         Text(
           title,
           style: TextStyle(
-            color: HexColor("#442C2E"),
+            
+            color: selectedColor == Colors.transparent ?  HexColor("#442C2E") : selectedColor,
             fontWeight: FontWeight.bold,
             fontSize: 18.0
           ),
