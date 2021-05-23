@@ -38,7 +38,6 @@ class CoreLibrary {
     final dir = await getApplicationDocumentsDirectory();
     return File(dir.path + '/ShoppingHelperAuth.txt')
         .writeAsString(value.toString());
-
   }
 
   //3자리마디 콤마표시
@@ -50,7 +49,8 @@ class CoreLibrary {
 }
 
 String url = "http://10.0.2.2:3000/";
-String urlTestServer = "http://10.0.2.2:3000/";
+//String urlTestServer = "http://10.0.2.2:3000/";
+String urlTestServer = "http://192.168.123.108:3000";
 String urlServer = "http://shoppinghelper.cafe24app.com/";
 
 showPopup(BuildContext context, Widget widget, String title,

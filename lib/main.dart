@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:stock/stock/Practice.dart';
 import 'package:stock/stock/stock.dart';
 import 'package:stock/model/ManuDTO.dart';
+import 'package:stock/page/SearchStockMain.dart';
 
 void main() {
   runApp(
@@ -10,7 +11,8 @@ void main() {
       initialRoute: '/',
       routes: {
         '/': (context) => Menu(),
-        '/search': (context) => Stock(),
+        '/search': (context) => SearchStockMain(),
+        //'/search': (context) => Stock(),
         '/virtualinvestment': (context) => Practice(),
       },
     ),

@@ -22,3 +22,9 @@ List<MenuDTO> getMenuList() {
   list.add(new MenuDTO(Color(0xff123b3a), 'AI종목', '/ai'));
   return list;
 }
+
+Color getMainThemeColor(String _url) {
+  List<MenuDTO> _list = getMenuList();
+  Color _color = _list.firstWhere((element) => element.url == _url).color;
+  return _color;
+}

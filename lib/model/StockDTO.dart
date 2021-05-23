@@ -7,5 +7,6 @@ class StockDTO {
     return "{ code=$code, name=$name }";
   }
 
-
+  //StockDTO();
+  StockDTO({this.code, this.name});
 } /* End class. */

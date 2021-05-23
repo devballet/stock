@@ -10,7 +10,6 @@ import 'package:stock/model/StockDTO.dart';
 import 'package:stock/model/PracticeModel.dart'
     show PracticeModel, practiceModel;
 import 'package:stock/model/StockValueDTO.dart';
-import 'package:flutter_candlesticks/flutter_candlesticks.dart';
 import 'package:stock/popup/BuyPopup.dart';
 import 'package:stock/popup/PracticeInputPopup.dart';
 import 'package:stock/stock/PracticeBuy.dart';
@@ -20,11 +19,9 @@ import 'package:stock/stock/PracticeBuy.dart';
 
 class _SalesData {
   _SalesData(this.year, this.sales);
-   
+
   final String year;
   final double sales;
-
-
 }
 
 class PracticeDetailValue extends StatelessWidget {
@@ -356,9 +353,9 @@ class PracticeDetailValue extends StatelessWidget {
                       ),
                     ),
                     Container(
-                          height: 150,
-                          child: buy1,
-                        ),
+                      height: 150,
+                      child: buy1,
+                    ),
                     IndexedStack(
                       index: inModel.aiIndex,
                       children: [
