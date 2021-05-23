@@ -91,6 +91,7 @@ class _SearchStockMainState extends State<SearchStockMain> {
                           horizontal: 10.0,
                         ),
                         child: ListTile(
+                          leading: ,
                           title: Text(filter[index].name),
                         ),
                       ),
