@@ -30,14 +30,20 @@ class StockModel extends BaseModel {
     notifyListeners();
   }
 
+  static void saveFavorite() {}
   //전체
   Future<List<StockDTO>> getAllCompanyInfo() async {
     List<StockDTO> allStockList = [];
-    allStockList.add(StockDTO(code: "1", name: "ONE"));
-    allStockList.add(StockDTO(code: "2", name: "TWO"));
-    allStockList.add(StockDTO(code: "3", name: "THREE"));
-    allStockList.add(StockDTO(code: "4", name: "FOUR"));
-    allStockList.add(StockDTO(code: "5", name: "FIVE"));
+    allStockList.add(StockDTO(
+        code: "032640", name: "LG유플러스", market: "KOSPI", isfavorite: true));
+    allStockList.add(StockDTO(
+        code: "051900", name: "LG생활건강", market: "KOSPI", isfavorite: true));
+    allStockList.add(StockDTO(
+        code: "322222", name: "THREE", market: "KOSDAQ", isfavorite: false));
+    allStockList.add(StockDTO(
+        code: "444444", name: "FOUR", market: "KOSDAQ", isfavorite: true));
+    allStockList.add(StockDTO(
+        code: "555555", name: "FIVE", market: "KOSDAQ", isfavorite: false));
 
     //서버 작업 완료되면 주석 풀기
     /*

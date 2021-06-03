@@ -11,17 +11,14 @@ class StockValueDTO {
   String value;
   String percent;
 
-
-
   bool isSelected = false;
 
   bool isBuy1 = false;
   int buyValue;
   String currentPercent; //수익률
   /// Just for debugging, so we get something useful in the console.
-  
-  StockValueDTO Clone()
-  {
+
+  StockValueDTO Clone() {
     StockValueDTO item = new StockValueDTO();
     item.code = this.code;
     item.date = this.date;
@@ -37,5 +34,4 @@ class StockValueDTO {
   }
 
   StockValueDTO();
-  
 } /* End class. */

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:stock/model/ManuDTO.dart';
 import 'package:stock/model/StockDTO.dart';
 import 'package:stock/model/StockModel.dart' show StockModel;
@@ -53,6 +54,7 @@ class _SearchStockMainState extends State<SearchStockMain> {
         child: Column(
           children: [
             TextField(
+              keyboardType: TextInputType.text,
               style: TextStyle(fontSize: 15),
               onChanged: (value) => runFilter(value),
               decoration: InputDecoration(
@@ -87,13 +89,29 @@ class _SearchStockMainState extends State<SearchStockMain> {
                         key: ValueKey(filter[index].code),
                         elevation: 4,
                         margin: EdgeInsets.symmetric(
-                          vertical: 10.0,
-                          horizontal: 10.0,
+                          vertical: 7.0,
+                          horizontal: 4.0,
                         ),
                         child: ListTile(
-                          leading: ,
-                          title: Text(filter[index].name),
-                        ),
+                            leading: Text(
+                              filter[index].code,
+                            ),
+                            title: Text(filter[index].name),
+                            subtitle: Text(filter[index].market),
+                            trailing: GestureDetector(
+                              onTap: () {
+                                filter[index].isfavorite =
+                                    !filter[index].isfavorite;
+                                StockModel.saveFavorite();
+                                setState(() {});
+                              },
+                              child: Icon(
+                                Icons.star,
+                                color: filter[index].isfavorite
+                                    ? Colors.lightGreen
+                                    : Colors.grey,
+                              ),
+                            )),
                       ),
                     )
                   : Text("No Result"),

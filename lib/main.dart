@@ -1,18 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:stock/component/DetailInfoItem.dart';
+import 'package:stock/page/StockInfoPopup.dart';
 import 'package:stock/stock/Practice.dart';
 import 'package:stock/stock/stock.dart';
 import 'package:stock/model/ManuDTO.dart';
 import 'package:stock/page/SearchStockMain.dart';
+import 'package:http/http.dart' as http;
 
-void main() {
+void main() async {
+  /*
+  String url = "https://192.168.0.56:3000/";
+
+  var response = await http.get(url);
+  var statusCode = response.statusCode;
+  var responseHeaders = response.headers;
+  var responseBody = response.body;
+
+  print("statusCode : ${statusCode}");
+  print("responseHeaders : ${responseHeaders}");
+  print("responseBody : ${responseBody}");
+  */
+
   runApp(
     MaterialApp(
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
       routes: {
         '/': (context) => Menu(),
+        //'/': (context) => StockInfo(),
         '/search': (context) => SearchStockMain(),
-        //'/search': (context) => Stock(),
         '/virtualinvestment': (context) => Practice(),
       },
     ),
