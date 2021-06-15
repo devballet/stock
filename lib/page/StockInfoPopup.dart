@@ -10,117 +10,141 @@ class StockInfo extends StatelessWidget {
   StockInfoDTO data = dummyCreate();
   @override
   Widget build(BuildContext context) {
-    return Material(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 3,
-        ),
-        child: Container(
-          child: Column(
-            children: [
-              Expanded(
-                flex: 1,
-                child: Container(
-                  alignment: Alignment.bottomLeft,
-                  child: Text(
-                    '${data.name} (${data.code}) | ${data.type}',
-                    // '한세실업(105630) | KOSPI',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 20,
+    return Center(
+      child: Container(
+        color: Colors.pink,
+        height: 350,
+        // type: MaterialType.transparency,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 3,
+          ),
+          child: Container(
+            color: Colors.red,
+            height: 100,
+            child: Column(
+              children: [
+                Expanded(
+                  flex: 1,
+                  child: Container(
+                    alignment: Alignment.bottomLeft,
+                    child: Text(
+                      '${data.name} (${data.code}) | ${data.type}',
+                      // '한세실업(105630) | KOSPI',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 20,
+                      ),
+                      textAlign: TextAlign.right,
                     ),
-                    textAlign: TextAlign.right,
                   ),
                 ),
-              ),
-              Expanded(
-                flex: 1,
-                child: Container(
-                    alignment: Alignment.centerLeft,
-                    child: Row(
-                      children: [
-                        Text(
-                          '${data.price}',
-                          style: TextStyle(fontSize: 35),
-                        ),
-                        SizedBox(
-                          width: 20,
-                        ),
-                        Text(
-                          '${data.updownprc} (${data.updownper}%)',
-                          style: TextStyle(
-                            fontSize: 20,
+                Expanded(
+                  flex: 1,
+                  child: Container(
+                      alignment: Alignment.centerLeft,
+                      child: Row(
+                        children: [
+                          Text(
+                            '${data.price}',
+                            style: TextStyle(fontSize: 35),
                           ),
-                        ),
-                      ],
-                    )),
-              ),
-              Expanded(
-                flex: 5,
-                child: Row(
-                  children: [
-                    Expanded(
-                      flex: 1,
-                      child: Column(
-                        children: [
-                          DetailInfoItem(
-                              name: '시가',
-                              value: data.tddOpnprc,
-                              isNumber: true),
-                          DetailInfoItem(
-                              name: '고가', value: data.tddHgprc, isNumber: true),
-                          DetailInfoItem(
-                              name: '저가', value: data.tddLwprc, isNumber: true),
-                          DetailInfoItem(
-                              name: '52주(종가)\r\n최고',
-                              value: data.wk52HgstPrc,
-                              isNumber: true),
-                          DetailInfoItem(
-                              name: '52주(종가)\r\n최저',
-                              value: data.wk52LwstPrc,
-                              isNumber: true),
-                          DetailInfoItem(
-                              name: '대용가', value: data.sbPrc, isNumber: true),
+                          SizedBox(
+                            width: 20,
+                          ),
+                          Text(
+                            '${data.updownprc} (${data.updownper}%)',
+                            style: TextStyle(
+                              fontSize: 20,
+                            ),
+                          ),
                         ],
-                      ),
-                    ),
-                    Expanded(
-                      flex: 1,
-                      child: Column(
-                        children: [
-                          DetailInfoItem(
-                              name: '거래량(주)',
-                              value: data.sbPrc,
-                              isNumber: true),
-                          DetailInfoItem(
-                              name: '거래대금(원)',
-                              value: data.accTrdvol,
-                              isNumber: true),
-                          DetailInfoItem(
-                              name: '시가총액(백만원)',
-                              value: data.accTrdval,
-                              isNumber: true),
-                          DetailInfoItem(
-                              name: '외국인비율',
-                              value: data.fornRto,
-                              isNumber: true),
-                          DetailInfoItem(
-                              name: 'PER/PBR',
-                              value: data.perPbr,
-                              isNumber: true),
-                          DetailInfoItem(
-                              name: '배당수익률', value: data.divYd, isNumber: true),
-                        ],
-                      ),
-                    ),
-                  ],
+                      )),
                 ),
-              ),
-              Expanded(
-                flex: 4,
-                child: Container(),
-              ),
-            ],
+                Expanded(
+                  flex: 5,
+                  child: Row(
+                    children: [
+                      Expanded(
+                        flex: 1,
+                        child: Column(
+                          children: [
+                            DetailInfoItem(
+                                name: '시가',
+                                value: data.tddOpnprc,
+                                isNumber: true),
+                            DetailInfoItem(
+                                name: '고가',
+                                value: data.tddHgprc,
+                                isNumber: true),
+                            DetailInfoItem(
+                                name: '저가',
+                                value: data.tddLwprc,
+                                isNumber: true),
+                            DetailInfoItem(
+                                name: '52주(종가)\r\n최고',
+                                value: data.wk52HgstPrc,
+                                isNumber: true),
+                            DetailInfoItem(
+                                name: '52주(종가)\r\n최저',
+                                value: data.wk52LwstPrc,
+                                isNumber: true),
+                            DetailInfoItem(
+                                name: '대용가', value: data.sbPrc, isNumber: true),
+                          ],
+                        ),
+                      ),
+                      Expanded(
+                        flex: 1,
+                        child: Column(
+                          children: [
+                            DetailInfoItem(
+                                name: '거래량(주)',
+                                value: data.sbPrc,
+                                isNumber: true),
+                            DetailInfoItem(
+                                name: '거래대금(원)',
+                                value: data.accTrdvol,
+                                isNumber: true),
+                            DetailInfoItem(
+                                name: '시가총액(백만원)',
+                                value: data.accTrdval,
+                                isNumber: true),
+                            DetailInfoItem(
+                                name: '외국인비율',
+                                value: data.fornRto,
+                                isNumber: true),
+                            DetailInfoItem(
+                                name: 'PER/PBR',
+                                value: data.perPbr,
+                                isNumber: true),
+                            DetailInfoItem(
+                                name: '배당수익률',
+                                value: data.divYd,
+                                isNumber: true),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Expanded(
+                  flex: 1,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      textStyle: TextStyle(fontSize: 20),
+                      primary: Colors.yellow,
+                    ),
+                    onPressed: null,
+                    child: Text("버튼"),
+                  ),
+                ),
+                // Expanded(
+                //   flex: 4,
+                //   child: Container(),
+                // ),
+              ],
+            ),
           ),
         ),
       ),

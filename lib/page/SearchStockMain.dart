@@ -1,8 +1,13 @@
+//2021.05.xx
+//박해나 작성
+//종목검색 화면
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:stock/core/coreLibrary.dart';
 import 'package:stock/model/ManuDTO.dart';
 import 'package:stock/model/StockDTO.dart';
 import 'package:stock/model/StockModel.dart' show StockModel;
+import 'package:stock/page/StockInfoPopup.dart';
 
 class SearchStockMain extends StatefulWidget {
   @override
@@ -82,6 +87,7 @@ class _SearchStockMainState extends State<SearchStockMain> {
               height: 15,
             ),
             Expanded(
+              flex: 1,
               child: filter.length > 0
                   ? ListView.builder(
                       itemCount: filter.length,
@@ -93,28 +99,42 @@ class _SearchStockMainState extends State<SearchStockMain> {
                           horizontal: 4.0,
                         ),
                         child: ListTile(
-                            leading: Text(
-                              filter[index].code,
+                          leading: Text(
+                            filter[index].code,
+                          ),
+                          title: Text(filter[index].name),
+                          subtitle: Text(filter[index].market),
+                          trailing: GestureDetector(
+                            onTap: () {
+                              filter[index].isfavorite =
+                                  !filter[index].isfavorite;
+                              StockModel.saveFavorite();
+                            },
+                            child: Icon(
+                              Icons.star,
+                              color: filter[index].isfavorite
+                                  ? Colors.lightGreen
+                                  : Colors.grey,
                             ),
-                            title: Text(filter[index].name),
-                            subtitle: Text(filter[index].market),
-                            trailing: GestureDetector(
-                              onTap: () {
-                                filter[index].isfavorite =
-                                    !filter[index].isfavorite;
-                                StockModel.saveFavorite();
-                                setState(() {});
-                              },
-                              child: Icon(
-                                Icons.star,
-                                color: filter[index].isfavorite
-                                    ? Colors.lightGreen
-                                    : Colors.grey,
-                              ),
-                            )),
+                          ),
+                          onTap: () {
+                            showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return Container(
+                                    height: 300,
+                                    child: StockInfo(),
+                                  );
+                                });
+                          },
+                        ),
                       ),
                     )
                   : Text("No Result"),
+            ),
+            Visibility(
+              visible: true,
+              child: StockInfo(),
             )
           ],
         ),
