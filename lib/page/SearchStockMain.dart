@@ -89,56 +89,146 @@ class _SearchStockMainState extends State<SearchStockMain> {
             Expanded(
               flex: 1,
               child: filter.length > 0
-                  ? ListView.builder(
-                      itemCount: filter.length,
-                      itemBuilder: (context, index) => Card(
-                        key: ValueKey(filter[index].code),
-                        elevation: 4,
-                        margin: EdgeInsets.symmetric(
-                          vertical: 7.0,
-                          horizontal: 4.0,
-                        ),
-                        child: ListTile(
-                          leading: Text(
-                            filter[index].code,
-                          ),
-                          title: Text(filter[index].name),
-                          subtitle: Text(filter[index].market),
-                          trailing: GestureDetector(
-                            onTap: () {
-                              filter[index].isfavorite =
-                                  !filter[index].isfavorite;
-                              StockModel.saveFavorite();
-                            },
-                            child: Icon(
-                              Icons.star,
-                              color: filter[index].isfavorite
-                                  ? Colors.lightGreen
-                                  : Colors.grey,
-                            ),
-                          ),
-                          onTap: () {
-                            showDialog(
-                                context: context,
-                                builder: (BuildContext context) {
-                                  return Container(
-                                    height: 300,
-                                    child: StockInfo(),
-                                  );
-                                });
-                          },
+                  ? ListView(
+                      children: List.generate(
+                        filter.length,
+                        (i) => AnimatedListItem(
+                          i,
+                          filter[i],
+                          key: ValueKey(filter[i].code),
                         ),
                       ),
                     )
                   : Text("No Result"),
             ),
-            Visibility(
-              visible: true,
-              child: StockInfo(),
-            )
+            // Visibility(
+            //   visible: true,
+            //   child: StockInfo(),
+            // )
           ],
         ),
       ),
     );
   }
+}
+
+class AnimatedListItem extends StatefulWidget {
+  final int index;
+  final StockDTO item;
+
+  AnimatedListItem(this.index, this.item, {Key key}) : super(key: key);
+
+  @override
+  _AnimatedListItemState createState() => _AnimatedListItemState();
+}
+
+class _AnimatedListItemState extends State<AnimatedListItem> {
+  bool _animate = false;
+  static bool _isStart = true;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _isStart
+        ? Future.delayed(Duration(milliseconds: widget.index * 300), () {
+            setState(() {
+              _animate = true;
+              _isStart = false;
+            });
+          })
+        : _animate = true;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedOpacity(
+      duration: Duration(milliseconds: 1000),
+      opacity: _animate ? 1 : 0,
+      curve: Curves.easeInOutQuart,
+      child: AnimatedPadding(
+        duration: Duration(milliseconds: 1000),
+        padding: _animate
+            ? const EdgeInsets.all(4.0)
+            : const EdgeInsets.only(top: 10),
+        child: Container(
+          constraints: BoxConstraints.expand(height: 100),
+          child: Card(
+            key: ValueKey(widget.item.code),
+            elevation: 4,
+            margin: EdgeInsets.symmetric(
+              vertical: 7.0,
+              horizontal: 4.0,
+            ),
+            child: ListTile(
+              leading: Text(
+                widget.item.code,
+              ),
+              title: Text(widget.item.name),
+              subtitle: Text(widget.item.market),
+              trailing: GestureDetector(
+                onTap: () {
+                  widget.item.isfavorite = !widget.item.isfavorite;
+                  StockModel.saveFavorite();
+                },
+                child: Icon(
+                  Icons.star,
+                  color:
+                      widget.item.isfavorite ? Colors.lightGreen : Colors.grey,
+                ),
+              ),
+              onTap: () {
+                showGeneralDialog(
+                  context: context,
+                  barrierLabel: "Hello there",
+                  barrierDismissible: true,
+                  transitionDuration:
+                      Duration(milliseconds: 500), //This is time
+                  barrierColor: Colors.black
+                      .withOpacity(0.5), // Add this property is color
+                  pageBuilder: (BuildContext context, Animation animation,
+                      Animation secondaryAnimation) {
+                    return StockInfo();
+                  },
+                );
+                // showGeneralDialog(
+                //     barrierColor: Colors.black.withOpacity(0.5),
+                //     transitionBuilder: (context, a1, a2, widget) {
+                //       return Transform.scale(
+                //         scale: a1.value,
+                //         child: Opacity(
+                //           opacity: a1.value,
+                //           child: AlertDialog(
+                //             shape: OutlineInputBorder(
+                //                 borderRadius: BorderRadius.circular(16.0)),
+                //             title: Text('Hello!!'),
+                //             content: Text('How are you?'),
+                //           ),
+                //         ),
+                //       );
+                //     },
+                //     transitionDuration: Duration(milliseconds: 200),
+                //     barrierDismissible: true,
+                //     barrierLabel: '',
+                //     context: context,
+                //     pageBuilder: (context, animation1, animation2) {});
+                //selectItem();
+                // showDialog(
+                //   context: context,
+                //   builder: (BuildContext context) {
+                //     return Container(
+                //       height: 300,
+                //       child: StockInfo(),
+                //     );
+                //   },
+                // );
+              },
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  void selectItem() {}
 }
